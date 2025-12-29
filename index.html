@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>482 SID Visa Salary Threshold Calculator (Australia, 2025–26)</title>
+  <meta name="description" content="Check if an offered salary meets the Skills in Demand (subclass 482) income thresholds (CSIT/SSIT) and the Annual Market Salary Rate (AMSR). Updated for 2025–26." />
+  <link rel="canonical" href="https://example.com/482-sid-salary-threshold-calculator" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="482 SID Visa Salary Threshold Calculator (Australia, 2025–26)" />
+  <meta property="og:description" content="Instant check against CSIT/SSIT and the Annual Market Salary Rate (AMSR). One-page tool." />
+  <meta property="og:type" content="website" />
+
+  <!-- Minimal styling (no external deps) -->
+  <style>
+    :root { --bg:#0b0d12; --card:#111522; --muted:#9aa3b2; --text:#e9edf5; --ok:#41d17c; --bad:#ff5c5c; --warn:#ffcc66; --line:#222a3a; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,sans-serif;background:linear-gradient(180deg,#0b0d12 0%, #090b10 100%);color:var(--text)}
+    a{color:#9cd3ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 64px}
+    header{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+    h1{font-size:28px;line-height:1.2;margin:0}
+    .sub{color:var(--muted);font-size:14px;line-height:1.45}
+    .grid{display:grid;grid-template-columns:1fr;gap:14px}
+    @media (min-width: 900px){ .grid{grid-template-columns: 1.15fr 0.85fr;} }
+    .card{background:rgba(17,21,34,0.85);border:1px solid var(--line);border-radius:16px;padding:16px}
+    .row{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px}
+    @media (min-width: 640px){ .row{grid-template-columns: 1fr 1fr;} }
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    input, select{
+      width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--line);
+      background:#0e1220;color:var(--text);outline:none
+    }
+    input:focus, select:focus{border-color:#375dff; box-shadow:0 0 0 3px rgba(55,93,255,0.25)}
+    .hint{font-size:12px;color:var(--muted);margin-top:6px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:#0e1220;font-size:12px;color:var(--muted)}
+    .result{
+      border-radius:14px;padding:14px;border:1px solid var(--line);background:#0e1220;display:flex;flex-direction:column;gap:8px
+    }
+    .status{font-weight:700}
+    .ok{color:var(--ok)}
+    .bad{color:var(--bad)}
+    .warn{color:var(--warn)}
+    .kvs{display:grid;grid-template-columns:1fr;gap:8px}
+    .kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted)}
+    .kv b{color:var(--text);font-weight:650}
+    .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    button{
+      border:1px solid var(--line);background:#121a30;color:var(--text);
+      padding:10px 12px;border-radius:12px;cursor:pointer;font-weight:650
+    }
+    button:hover{border-color:#3b4a77}
+    .small{font-size:12px;color:var(--muted);line-height:1.5}
+    details{border:1px solid var(--line);border-radius:14px;background:#0e1220;padding:10px 12px}
+    summary{cursor:pointer;font-weight:650}
+    footer{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.55}
+    code.inline{background:#0e1220;border:1px solid var(--line);border-radius:8px;padding:2px 6px}
+  </style>
+
+  <!-- FAQ schema (optional) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"What salary do I need for the 482 Skills in Demand visa?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"In general, the nominated salary must be at least the relevant income threshold (CSIT or SSIT depending on stream) and at least the Annual Market Salary Rate (AMSR) for the role."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Does meeting the threshold guarantee 482 approval?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"No. Salary is only one requirement. Eligibility also depends on occupation, genuine position, skills/experience, and other Home Affairs criteria."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>482 SID Visa Salary Threshold Calculator (Australia)</h1>
+      <div class="sub">
+        Checks your offered salary against the <b>income threshold</b> (CSIT/SSIT) and your entered <b>Annual Market Salary Rate (AMSR)</b>.
+        Threshold values shown are those listed by Home Affairs as indexed from <b>1 July 2025</b>.  [oai_citation:2‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)
+      </div>
+      <div class="pill" id="pillDate">Reference: 2025–26 thresholds</div>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2 style="margin:0 0 8px 0;font-size:18px;">Inputs</h2>
+
+        <div class="row">
+          <div>
+            <label for="stream">Stream</label>
+            <select id="stream">
+              <option value="core">Core Skills stream (CSIT)</option>
+              <option value="specialist">Specialist Skills stream (SSIT)</option>
+            </select>
+            <div class="hint">If you’re not sure: most 482 nominations are Core Skills unless the role qualifies for Specialist Skills.</div>
+          </div>
+
+          <div>
+            <label for="salary">Offered base salary (AUD / year)</label>
+            <input id="salary" type="number" inputmode="decimal" min="0" step="500" placeholder="e.g., 98000" />
+            <div class="hint">Use annual base salary (exclude super). Keep it consistent with your contract/nomination.</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="amsr">Annual Market Salary Rate (AMSR) (AUD / year)</label>
+            <input id="amsr" type="number" inputmode="decimal" min="0" step="500" placeholder="e.g., 105000" />
+            <div class="hint">AMSR is what an equivalent Australian worker would be paid for the same role/location. If unknown, leave blank and the tool uses the threshold only.</div>
+          </div>
+
+          <div>
+            <label for="asAt">Threshold “as at”</label>
+            <select id="asAt">
+              <option value="2025-07-01">1 Jul 2025 (current)</option>
+            </select>
+            <div class="hint">Income thresholds are indexed over time. This version is set to the listed 1 Jul 2025 values.  [oai_citation:3‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)</div>
+          </div>
+        </div>
+
+        <div class="btns">
+          <button id="btnCalc">Calculate</button>
+          <button id="btnReset" type="button">Reset</button>
+          <button id="btnShare" type="button">Copy share link</button>
+        </div>
+
+        <div style="margin-top:12px" class="small">
+          This tool is for quick estimation only. Always confirm requirements with official guidance or a registered migration agent/lawyer.  [oai_citation:4‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2 style="margin:0 0 8px 0;font-size:18px;">Result</h2>
+
+        <div class="result" id="resultBox">
+          <div class="status" id="statusLine">Enter your numbers and click Calculate.</div>
+
+          <div class="kvs">
+            <div class="kv"><span>Relevant threshold</span><b id="thresholdLabel">—</b></div>
+            <div class="kv"><span>AMSR (if provided)</span><b id="amsrLabel">—</b></div>
+            <div class="kv"><span>Required minimum (max of the two)</span><b id="requiredLabel">—</b></div>
+            <div class="kv"><span>Your offered salary</span><b id="salaryLabel">—</b></div>
+            <div class="kv"><span>Difference</span><b id="diffLabel">—</b></div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <details>
+            <summary>What this calculator checks</summary>
+            <div class="small" style="margin-top:8px">
+              For SID 482 nominations, the salary must generally be <b>at least the income threshold</b> (CSIT or SSIT depending on stream)
+              and <b>at least the Annual Market Salary Rate (AMSR)</b>. This calculator uses:
+              <br><br>
+              <code class="inline">required minimum = max(threshold, AMSR)</code>
+              <br><br>
+              Official salary requirement guidance is on the Department of Home Affairs site.  [oai_citation:5‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)
+            </div>
+          </details>
+        </div>
+
+        <div style="margin-top:12px">
+          <details>
+            <summary>Current thresholds used</summary>
+            <div class="small" style="margin-top:8px">
+              <b>Core Skills Income Threshold (CSIT):</b> AUD <span id="csitShow"></span><br>
+              <b>Specialist Skills Income Threshold (SSIT):</b> AUD <span id="ssitShow"></span><br><br>
+              Values shown are listed by Home Affairs as indexed from 1 July 2025.  [oai_citation:6‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)
+            </div>
+          </details>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card" style="margin-top:14px">
+      <h2 style="margin:0 0 10px 0;font-size:18px;">FAQ</h2>
+
+      <details>
+        <summary>Does superannuation count toward the threshold?</summary>
+        <div class="small" style="margin-top:8px">
+          Threshold checks are typically against annual earnings/salary amounts as defined by Home Affairs instruments and policy.
+          In practice, many employers compare against base salary (excluding super). If in doubt, confirm with your sponsor or migration professional.
+           [oai_citation:7‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)
+        </div>
+      </details>
+
+      <details style="margin-top:10px">
+        <summary>What if my offered salary meets CSIT/SSIT but is below AMSR?</summary>
+        <div class="small" style="margin-top:8px">
+          You can still fail the requirement if the role is paid below the market rate for an equivalent Australian worker.
+          That’s why this calculator uses the higher of threshold and AMSR.  [oai_citation:8‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)
+        </div>
+      </details>
+
+      <details style="margin-top:10px">
+        <summary>Can this calculator determine my occupation eligibility?</summary>
+        <div class="small" style="margin-top:8px">
+          No — it only checks salary math. Occupation eligibility is determined by the relevant skilled occupation lists/instruments and your circumstances.  [oai_citation:9‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/working-in-australia/skill-occupation-list?utm_source=chatgpt.com)
+        </div>
+      </details>
+    </section>
+
+    <footer>
+      Sources: Department of Home Affairs guidance on salary requirements and SID 482 streams.  [oai_citation:10‡Immigration and citizenship Website](https://immi.homeaffairs.gov.au/visas/employing-and-sponsoring-someone/sponsoring-workers/nominating-a-position/salary-requirements?utm_source=chatgpt.com)
+    </footer>
+  </div>
+
+  <script>
+    // Thresholds (as listed for 1 Jul 2025)
+    const THRESHOLDS = {
+      "2025-07-01": {
+        csit: 76515,
+        ssit: 141210,
+        label: "1 Jul 2025"
+      }
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    const fmtAUD = (n) => {
+      if (n === null || n === undefined || Number.isNaN(n)) return "—";
+      return new Intl.NumberFormat("en-AU", { style: "currency", currency: "AUD", maximumFractionDigits: 0 }).format(n);
+    };
+
+    const parseNum = (v) => {
+      if (v === "" || v === null || v === undefined) return null;
+      const x = Number(v);
+      return Number.isFinite(x) ? x : null;
+    };
+
+    function getThreshold() {
+      const asAt = $("asAt").value;
+      const stream = $("stream").value;
+      const t = THRESHOLDS[asAt];
+      const threshold = (stream === "specialist") ? t.ssit : t.csit;
+      const name = (stream === "specialist") ? "SSIT (Specialist Skills)" : "CSIT (Core Skills)";
+      return { threshold, name, asAtLabel: t.label, csit: t.csit, ssit: t.ssit };
+    }
+
+    function calculate() {
+      const salary = parseNum($("salary").value);
+      const amsr = parseNum($("amsr").value);
+
+      const { threshold, name, asAtLabel } = getThreshold();
+
+      if (salary === null || salary <= 0) {
+        $("statusLine").textContent = "Please enter a valid offered salary.";
+        $("statusLine").className = "status warn";
+        return;
+      }
+
+      const required = Math.max(threshold, (amsr && amsr > 0) ? amsr : 0, threshold);
+      const diff = salary - required;
+
+      $("thresholdLabel").textContent = `${name}: ${fmtAUD(threshold)} (as at ${asAtLabel})`;
+      $("amsrLabel").textContent = (amsr && amsr > 0) ? fmtAUD(amsr) : "Not provided";
+      $("requiredLabel").textContent = fmtAUD(required);
+      $("salaryLabel").textContent = fmtAUD(salary);
+      $("diffLabel").textContent = fmtAUD(diff);
+
+      if (diff >= 0) {
+        $("statusLine").textContent = "✅ Looks OK on salary: meets / exceeds the required minimum.";
+        $("statusLine").className = "status ok";
+      } else {
+        $("statusLine").textContent = "❌ Likely short on salary: below the required minimum.";
+        $("statusLine").className = "status bad";
+      }
+    }
+
+    function resetAll() {
+      $("stream").value = "core";
+      $("salary").value = "";
+      $("amsr").value = "";
+      $("asAt").value = "2025-07-01";
+
+      $("statusLine").textContent = "Enter your numbers and click Calculate.";
+      $("statusLine").className = "status";
+      $("thresholdLabel").textContent = "—";
+      $("amsrLabel").textContent = "—";
+      $("requiredLabel").textContent = "—";
+      $("salaryLabel").textContent = "—";
+      $("diffLabel").textContent = "—";
+
+      updateThresholdShow();
+      history.replaceState(null, "", location.pathname);
+    }
+
+    function updateThresholdShow() {
+      const t = THRESHOLDS[$("asAt").value];
+      $("csitShow").textContent = new Intl.NumberFormat("en-AU").format(t.csit);
+      $("ssitShow").textContent = new Intl.NumberFormat("en-AU").format(t.ssit);
+      $("pillDate").textContent = `Reference: ${t.label} thresholds`;
+    }
+
+    function syncFromQuery() {
+      const qs = new URLSearchParams(location.search);
+      const stream = qs.get("stream");
+      const salary = qs.get("salary");
+      const amsr = qs.get("amsr");
+      const asAt = qs.get("asAt");
+
+      if (stream && ["core","specialist"].includes(stream)) $("stream").value = stream;
+      if (asAt && THRESHOLDS[asAt]) $("asAt").value = asAt;
+      if (salary) $("salary").value = salary;
+      if (amsr) $("amsr").value = amsr;
+
+      updateThresholdShow();
+
+      if (salary) calculate();
+    }
+
+    async function copyShareLink() {
+      const q = new URLSearchParams();
+      q.set("stream", $("stream").value);
+      if ($("salary").value) q.set("salary", $("salary").value);
+      if ($("amsr").value) q.set("amsr", $("amsr").value);
+      q.set("asAt", $("asAt").value);
+
+      const url = `${location.origin}${location.pathname}?${q.toString()}`;
+      try {
+        await navigator.clipboard.writeText(url);
+        $("statusLine").textContent = "Link copied ✅ (paste it anywhere)";
+        $("statusLine").className = "status ok";
+      } catch {
+        prompt("Copy this link:", url);
+      }
+    }
+
+    // Wire up
+    $("btnCalc").addEventListener("click", calculate);
+    $("btnReset").addEventListener("click", resetAll);
+    $("btnShare").addEventListener("click", copyShareLink);
+    $("asAt").addEventListener("change", updateThresholdShow);
+
+    // Init
+    updateThresholdShow();
+    syncFromQuery();
+  </script>
+</body>
+</html>
