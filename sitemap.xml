@@ -2,12 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://482-sid-salary-calculator.pages.dev/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2025-12-30</lastmod>
   </url>
   <url>
-    <loc>https://482-sid-salary-calculator.pages.dev/index.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://482-sid-salary-calculator.pages.dev/hecs-repayment-calculator.html</loc>
+    <lastmod>2025-12-30</lastmod>
+  </url>
+  <url>
+    <loc>https://482-sid-salary-calculator.pages.dev/189-points-calculator.html</loc>
+    <lastmod>2025-12-30</lastmod>
   </url>
 </urlset>
