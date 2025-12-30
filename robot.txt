@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://482-sid-salary-calculator.pages.dev/sitemap.xml
